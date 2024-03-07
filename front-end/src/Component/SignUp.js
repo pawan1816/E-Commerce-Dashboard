@@ -1,11 +1,32 @@
-import React,{useState} from "react";
-
+import React,{useState,useEffect} from "react";
+import {useNavigate} from 'react-router-dom';
 const SignUp=()=>{
     const [name,setName]=useState("");
     const [password,setPassword]=useState("");
     const [email,setEmail]=useState("");
-    const collectData=()=>{
-        console.warn(name,email,password);
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        const auth=localStorage.getItem('user');
+        if(auth){
+            navigate('/');
+        }
+    })
+
+    const collectData=async()=>{
+        let result=await fetch('http://localhost:5000/register',{
+            method:'post',
+            body:JSON.stringify({ name, email, password}),
+            headers:{
+                'Content-Type' : 'application/json'
+            },
+        })
+        result= await result.json()
+        console.warn(result);
+        localStorage.setItem("user",JSON.stringify(result));
+        if(result){
+            navigate('/')
+        }
     }
     return(
         <div className="register">
@@ -15,8 +36,10 @@ const SignUp=()=>{
 
             <input className="inputbox" type="text"
             value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="Enter Email" />
+
             <input className="inputbox" type="password"
             value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Enter Password" />
+
             <button onClick={collectData} type="button" className="appbutton">Sign Up</button>
         </div>
     )
