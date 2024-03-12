@@ -4,6 +4,7 @@ import Footer from './Component/Footer';
 import SignUp from './Component/SignUp';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import PrivateComponent from './Component/PrivateComponent';
+import Login from './Component/Login';
 function App() {
   return (
     <div className="App">
@@ -20,6 +21,7 @@ function App() {
           </Route>
 
           <Route path="/signup" element={<SignUp/>}></Route>
+          <Route path="/login" element={<Login></Login>}/>
         </Routes>
       </BrowserRouter>
       <Footer/>
