@@ -20,12 +20,23 @@
     background-color: skyblue;
     width: 100%;
 }
-.register{
+.register, .prouct{
   margin-left: 30%;
 }
 .login{
   margin-left: 30%;
   margin-top: 100px;
+}
+
+.nav-right{
+  text-align: right;
+}
+.logo{
+  width: 45px;
+  float: left;
+  border-radius: 50%;
+  margin-top: 3px;
+  margin-left: 20px;
 }
 
 .inputbox{
